@@ -1,0 +1,310 @@
+# Source Registry with Evidence Claims — Recommended Package
+# Derived from rules/docs/sources.yml
+# Contains only sources/claims backing rules in the recommended (AILS_) set.
+#
+# Tier derivation (NOT stored, computed from weights):
+#   - core: max(backing_weights) >= 0.8 (official or research)
+#   - experimental: max(backing_weights) < 0.8 (community only)
+
+generic:
+- id: agents-md-spec
+  title: AGENTS.md Specification (Linux Foundation)
+  url: https://agents.md/
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: chat-overrides
+    text: Explicit user chat prompts override everything
+    quote: true
+    section: Conflict Resolution
+    rules: [AILS_C1]
+  - id: executable-commands
+    text: Agents will attempt to execute relevant programmatic checks and fix failures before finishing the task when commands
+      are listed
+    quote: true
+    section: FAQ
+    rules: [AILS_E1]
+  - id: living-document
+    text: Treat AGENTS.md as living documentation that can be updated anytime
+    section: Maintenance
+    rules: [AILS_M1]
+- id: advanced-context-engineering
+  url: https://github.com/humanlayer/advanced-context-engineering-for-coding-agents
+  type: research
+  weight: 0.8
+  accessed: '2026-01-30'
+  claims:
+  - id: context-target
+    text: Target 40-60% context utilization for optimal performance
+    rules: [AILS_E6]
+  - id: frequent-compaction
+    text: Use Frequent Intentional Compaction for large codebases
+    rules: [AILS_E6]
+- id: instruction-limits-principles
+  url: https://www.humanlayer.dev/blog/writing-a-good-claude-md
+  type: community
+  weight: 0.4
+  accessed: '2026-01-30'
+  claims:
+  - id: instruction-capacity
+    text: Frontier LLMs follow ~150-200 instructions with reasonable consistency
+    quote: true
+    rules: [AILS_C5]
+  - id: less-is-more
+    text: Less instructions is more - excessive instructions degrade quality uniformly
+    rules: [AILS_C5]
+  - id: use-linters
+    text: Exclude code style guidelines - use linters instead
+    rules: [AILS_E1]
+  - id: progressive-files
+    text: Separate task-specific instructions into discrete markdown files
+    rules: [AILS_C2]
+- id: spec-writing-for-agents
+  url: https://addyosmani.com/blog/good-spec/
+  type: community
+  weight: 0.4
+  accessed: '2026-01-30'
+  claims:
+  - id: three-tier-boundaries
+    text: 'Use three-tier boundaries: Always do, Ask first, Never do'
+    rules: [AILS_C3, AILS_C7]
+  - id: code-snippet-beats-prose
+    text: One real code snippet showing your style beats three paragraphs
+    quote: true
+    rules: [AILS_C6]
+  - id: curse-of-instructions
+    text: Performance degrades when too many rules compete for attention
+    rules: [AILS_C5]
+  - id: modularity
+    text: Break specs into focused sections rather than monolithic prompts
+    rules: [AILS_C2]
+
+claude:
+- id: claude-code-best-practices
+  url: https://code.claude.com/docs/en/best-practices
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: emphasis-words
+    text: Use emphasis with IMPORTANT or YOU MUST to improve adherence
+    quote: true
+    section: Write an effective CLAUDE.md
+    rules: [AILS_C5]
+- id: claude-code-memory
+  url: https://code.claude.com/docs/en/memory
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: memory-hierarchy
+    text: 'Four memory locations in hierarchical structure: managed, project, rules, user'
+    section: Determine memory type
+    rules: [AILS_CLAUDE_G1]
+  - id: be-specific
+    text: 'Be specific: Use 2-space indentation is better than Format code properly'
+    quote: true
+    section: Memory best practices
+    rules: [AILS_C1]
+  - id: review-periodically
+    text: Review memories periodically as your project evolves
+    section: Memory best practices
+    rules: [AILS_M1]
+  - id: keep-rules-focused
+    text: 'Keep rules focused: Each file should cover one topic'
+    quote: true
+    section: Best practices
+    rules: [AILS_C2]
+- id: claude-code-hooks
+  url: https://code.claude.com/docs/en/hooks-guide
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: hooks-for-formatting
+    text: Use hooks for automatic formatting - run prettier, gofmt after file edits
+    section: Example use cases
+    rules: [AILS_E1]
+  - id: hooks-deterministic
+    text: Hooks provide deterministic control ensuring actions always happen
+    section: Introduction
+    rules: [AILS_E1]
+  - id: app-level-code
+    text: Encode rules as hooks rather than prompting instructions for guaranteed execution
+    section: Introduction
+    rules: [AILS_E1]
+- id: claude-code-settings
+  url: https://code.claude.com/docs/en/settings
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: settings-hierarchy
+    text: Settings follow hierarchy with managed settings taking precedence
+    rules: [AILS_CLAUDE_G1]
+- id: claude-context-windows
+  url: https://platform.claude.com/docs/en/build-with-claude/context-windows
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: context-awareness
+    text: Claude can track remaining context window throughout conversation
+    section: Context awareness
+    rules: [AILS_E6]
+  - id: avoid-token-warnings
+    text: Model handles context automatically - avoid redundant token warnings
+    rules: [AILS_E6]
+- id: anthropic-teams-claude-code
+  url: https://claude.com/blog/how-anthropic-teams-use-claude-code
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: automated-pr-comments
+    text: Automated PR comments through GitHub Actions with Claude handling formatting
+    rules: [AILS_G7]
+  - id: test-driven-guidance
+    text: Guide Claude through test-driven development with periodic checkpoints
+    rules: [AILS_M1]
+  - id: governance-roles
+    text: Teams need clear roles and responsibilities for instruction files
+    rules: [AILS_G1, AILS_G2, AILS_G3]
+  - id: review-process
+    text: Implement review process for instruction file changes
+    rules: [AILS_M1, AILS_M2]
+- id: claude-4-best-practices
+  url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: be-explicit
+    text: Be explicit with instructions - specify desired output clearly
+    section: Be explicit
+    rules: [AILS_C1]
+  - id: context-improves
+    text: Add context or motivation behind instructions to improve performance
+    section: Add context
+    rules: [AILS_C4, AILS_C6]
+  - id: never-with-context
+    text: NEVER use ellipses is less effective than explaining why (TTS engine)
+    section: Add context
+    rules: [AILS_C7, AILS_C4]
+  - id: investigate-before-answering
+    text: Never speculate about code you have not opened
+    quote: true
+    section: Code exploration
+    rules: [AILS_E3, AILS_E4]
+  - id: instructions-not-philosophy
+    text: Frame instructions with actionable modifiers, not abstract principles
+    rules: [AILS_C6]
+- id: claude-code-issue-13579
+  url: https://github.com/anthropics/claude-code/issues/13579
+  type: research
+  weight: 0.8
+  accessed: '2026-01-30'
+  claims:
+  - id: token-waste-measured
+    text: 700K+ tokens wasted across 2M token project from 7 patterns
+    section: Analysis Results
+    rules: [AILS_E6]
+  - id: check-first-build-second
+    text: CHECK FIRST, BUILD SECOND - grep costs 100 tokens vs 70K rebuild
+    section: Golden Rules
+    rules: [AILS_E5]
+  - id: grep-over-agent
+    text: grep -r costs 100 tokens, 2 sec vs Explore-Agent 40K tokens, 5 min
+    quote: true
+    section: Golden Rules
+    rules: [AILS_E5]
+  - id: purpose-based-reading
+    text: Read files based on purpose to minimize token usage
+    rules: [AILS_E3]
+  - id: memory-reference
+    text: Reference from memory instead of re-reading unchanged files
+    rules: [AILS_E4]
+- id: claude-md-optimization-study
+  url: https://arize.com/blog/claude-md-best-practices-learned-from-optimizing-claude-code-with-prompt-learning/
+  type: research
+  weight: 0.8
+  accessed: '2026-01-30'
+  claims:
+  - id: iterative-tuning
+    text: CLAUDE.md files benefit from iterative refinement and testing
+    rules: [AILS_M1]
+- id: monorepo-claude-md-organization
+  url: https://dev.to/anvodev/how-i-organized-my-claudemd-in-a-monorepo-with-too-many-contexts-37k7
+  type: community
+  weight: 0.4
+  accessed: '2026-01-30'
+  claims:
+  - id: service-specific-files
+    text: Use service-specific instruction files in monorepos
+    rules: [AILS_C2]
+- id: enterprise-claude-usage
+  url: https://blog.sshh.io/p/how-i-use-every-claude-code-feature
+  type: community
+  weight: 0.4
+  accessed: '2026-01-30'
+  claims:
+  - id: never-with-alternative
+    text: NEVER statements should include positive alternatives
+    rules: [AILS_C7]
+- id: dometrain-claude-md-guide
+  url: https://dometrain.com/blog/creating-the-perfect-claudemd-for-claude-code/
+  type: community
+  weight: 0.4
+  accessed: '2026-01-30'
+  claims:
+  - id: lazy-loading-context
+    text: Break lengthy standards into separate files rather than embedding everything - reference external files to load
+      context on demand
+    section: Context Window Efficiency
+    rules: [AILS_C2, AILS_E6]
+  - id: command-specificity
+    text: Include specific flags and parameters in commands - omitting arguments causes agents to run defaults which fail
+    section: Terminal Commands Documentation
+    rules: [AILS_C1]
+  - id: duplicate-instruction-waste
+    text: Duplicate instructions add little value and use unnecessary context
+    quote: true
+    section: Context Window Efficiency
+    rules: [AILS_E6]
+  - id: living-document-updates
+    text: Update instruction file when noticing repeated agent errors - version control for team consistency
+    section: Living Document Approach
+    rules: [AILS_M1]
+- id: osmani-ai-coding-workflow
+  url: https://addyosmani.com/blog/ai-coding-workflow/
+  type: community
+  weight: 0.4
+  accessed: '2026-01-30'
+  claims:
+  - id: iterative-chunks
+    text: Break projects into iterative steps - implement one function, fix one bug, add one feature at a time
+    section: Breaking Work Into Chunks
+    rules: [AILS_E6]
+  - id: context-packaging
+    text: LLMs are literalists - show them the relevant code, docs, and constraints with detailed contextual instructions
+    quote: true
+    section: Context & Guidance Requirements
+    rules: [AILS_C1, AILS_C6]
+  - id: ci-force-multiplier
+    text: Any repository with heavy AI coding needs robust CI - automated tests, style checks, staging deployment
+    section: CI/CD as Force Multiplier
+    rules: [AILS_G7, AILS_E1]
+
+codex:
+- id: codex-agent-loop
+  title: Unrolling the Codex agent loop
+  url: https://openai.com/index/unrolling-the-codex-agent-loop/
+  type: official
+  weight: 1.0
+  accessed: '2026-01-30'
+  claims:
+  - id: auto-compaction
+    text: When tokens exceed auto_compact_limit, Codex invokes /responses/compact
+    section: Context Management
+    rules: [AILS_E6]

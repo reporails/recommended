@@ -1,0 +1,36 @@
+# Claude Code Agent Configuration — Recommended Rules
+# Schema: schemas/rule.schema.yml
+
+agent: claude
+prefix: CLAUDE
+name: Claude Code
+
+vars:
+  # Universal (required for all agents)
+  main_instruction_file:
+    - "**/CLAUDE.md"
+  instruction_files:
+    - "**/CLAUDE.md"
+    - ".claude/rules/**/*.md"
+
+  # Agent-specific (Claude supports rules directory)
+  supplementary_files:
+    - ".claude/rules/**/*.md"
+  rules_dir: ".claude/rules"
+  skills_dir: ".claude/skills"
+  local_file: "CLAUDE.local.md"
+  managed_settings_linux: "/etc/claude-code/managed-settings.json"
+  managed_settings_macos: "/Library/Application Support/ClaudeCode/managed-settings.json"
+  managed_settings_windows: "C:/Program Files/ClaudeCode/managed-settings.json"
+
+# Severity adjustments for Claude-specific behavior
+overrides:
+  # L6 pattern — most projects are L2-L4, ritual is optimization not requirement
+  AILS_E2-no-ritual-section:
+    severity: medium
+  # Claude's grep tool has sensible defaults (files_with_matches mode)
+  AILS_E5-no-grep-guidance:
+    severity: low
+  # Claude manages context automatically; memory instruction has limited impact
+  AILS_E4-no-memory-instruction:
+    severity: low

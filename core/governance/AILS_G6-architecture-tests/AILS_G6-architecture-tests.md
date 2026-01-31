@@ -1,0 +1,23 @@
+---
+id: AILS_G6
+title: Architecture Tests
+category: governance
+type: deterministic
+backed_by: []
+checks:
+  - id: AILS_G6-no-arch-tests
+    name: No architecture test files found
+    severity: medium
+    pattern_confidence: low
+sources: []
+see_also: [AILS_G5, AILS_G7]
+---
+
+# Architecture Tests
+
+Test files exist and CI integration present.
+
+## Pattern
+
+**Good:** tests/architecture/*.test.ts with CI workflow
+**Bad:** No automated architecture enforcement

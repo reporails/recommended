@@ -1,0 +1,40 @@
+# Canonical level definitions for the Reporails Recommended rules.
+# Supplementary to core levels (reporails/rules).
+#
+# These rules provide opinionated best practices for higher-quality instruction files.
+
+levels:
+  L0:
+    name: Absent
+    description: No instruction file
+    rules: []
+
+  L1:
+    name: Basic
+    description: Instruction file exists, reviewed, has basic content
+    rules: []
+
+  L2:
+    name: Scoped
+    description: Project-specific constraints, size limits, content quality
+    rules: [AILS_C1, AILS_C3, AILS_C4, AILS_C5, AILS_C6, AILS_C7]
+
+  L3:
+    name: Structured
+    description: Clear sections, external references, organized content
+    rules: [AILS_C2, AILS_E1, AILS_E6, AILS_M1]
+
+  L4:
+    name: Abstracted
+    description: Rules directory, path-scoped loading
+    rules: [AILS_CLAUDE_S1, AILS_CLAUDE_M1, AILS_E3, AILS_E4, AILS_E5, AILS_M2]
+
+  L5:
+    name: Governed
+    description: Team policies, process controls, compliance tracking
+    rules: [AILS_CLAUDE_G1, AILS_G1, AILS_G2, AILS_G3, AILS_G6, AILS_G7]
+
+  L6:
+    name: Adaptive
+    description: Backbone-driven navigation, contracts
+    rules: [AILS_S1, AILS_E2, AILS_G4, AILS_G5]

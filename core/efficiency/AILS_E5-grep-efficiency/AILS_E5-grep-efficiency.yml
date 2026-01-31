@@ -1,0 +1,11 @@
+rules:
+  - id: AILS_E5-no-grep-guidance
+    message: "No grep efficiency guidance"
+    severity: WARNING
+    languages: [generic]
+    patterns:
+      - pattern-regex: "(?s)\\A#[\\s\\S]+"
+      - pattern-not-regex: "(?i)(files_with_matches|head_limit|grep.*limit|search.*efficient)"
+    paths:
+      include:
+        - "{{main_instruction_file}}"
