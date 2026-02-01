@@ -54,9 +54,6 @@ rules:
     AILS_CLAUDE_M1: rule-snippet-length
     AILS_CLAUDE_G1: organization-level-policies
 
-schemas:
-  rule: schemas/rule.schema.yml      # inherited from rules
-
 artifacts:
   levels: levels.yml
   sources: docs/sources.yml
