@@ -18,49 +18,63 @@ jobs:
         id: version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
-      - name: Validate schemas have versions
-        run: |                                                                                                                                                             
-          for schema in schemas/*.schema.yml; do                                                                                                                           
-            if ! grep -q '^version:' "$schema"; then                                                                                                                       
-              echo "ERROR: $schema missing version field"                                                                                                                  
-              exit 1                                                                                                                                                       
-            fi                                                                                                                                                             
-          done                                                                                                                                                             
+      - name: Validate rule structure
+        run: |
+          errors=0
+          for dir in core/*/AILS_*/ agents/*/rules/AILS_*/; do
+            [ -d "$dir" ] || continue
+            id=$(basename "$dir" | cut -d- -f1)
+            slug=$(basename "$dir")
+            if [ ! -f "${dir}${slug}.md" ]; then
+              echo "ERROR: ${dir} missing ${slug}.md"
+              errors=$((errors + 1))
+            fi
+            if [ ! -f "${dir}${slug}.yml" ]; then
+              echo "ERROR: ${dir} missing ${slug}.yml"
+              errors=$((errors + 1))
+            fi
+          done
+          if [ "$errors" -gt 0 ]; then
+            echo "Found $errors errors"
+            exit 1
+          fi
+          echo "All rule directories valid"
 
       - name: Generate manifest
-        run: |                                                                                                                                                             
-          VERSION=${{ steps.version.outputs.VERSION }}                                                                                                                     
-                                                                                                                                                                           
-          echo "release: \"${VERSION}\"" > manifest.yml                                                                                                                    
-          echo "schemas:" >> manifest.yml                                                                                                                                  
-                                                                                                                                                                           
-          for schema in schemas/*.schema.yml; do                                                                                                                           
-            name=$(basename "$schema" .schema.yml)                                                                                                                         
-            version=$(grep '^version:' "$schema" | head -1 | awk '{print $2}' | tr -d '"')                                                                                 
-            echo "  ${name}: \"${version}\"" >> manifest.yml                                                                                                               
-          done                                                                                                                                                             
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+
+          echo "release: \"${VERSION}\"" > manifest.yml
+          echo "rules:" >> manifest.yml
+
+          count=0
+          for dir in core/*/AILS_*/ agents/*/rules/AILS_*/; do
+            [ -d "$dir" ] || continue
+            id=$(basename "$dir" | cut -d- -f1)
+            slug=$(basename "$dir")
+            echo "  ${id}: ${slug}" >> manifest.yml
+            count=$((count + 1))
+          done
+
+          echo "rule_count: ${count}" >> manifest.yml
 
       - name: Create tarball
-        run: |                                                                                                                                                             
+        run: |
           VERSION=${{ steps.version.outputs.VERSION }}
-          
-          # Create tarball with framework contents
-          tar -czvf reporails-rules-${VERSION}.tar.gz \
+
+          tar -czvf reporails-recommended-${VERSION}.tar.gz \
             manifest.yml \
             levels.yml \
             core/ \
             agents/ \
-            schemas/ \
-            docs/capability-levels.md \
-            docs/methodology-thresholds.md \
             docs/sources.yml
 
-          sha256sum reporails-rules-${VERSION}.tar.gz > checksums.txt
+          sha256sum reporails-recommended-${VERSION}.tar.gz > checksums.txt
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           generate_release_notes: true
           files: |
-            reporails-rules-*.tar.gz
+            reporails-recommended-*.tar.gz
             checksums.txt
