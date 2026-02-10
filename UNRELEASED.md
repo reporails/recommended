@@ -25,3 +25,5 @@
 - [META]: CI — added QA gate to release workflow (validate→qa→release), added CI workflow for branches/PRs
 - [META]: Removed 18 unused .gitkeep files from non-empty test fixture directories
 - [SCHEMA]: Added slug, level, targets fields to 25 rule.md frontmatters (schema compliance)
+- [META]: backbone.yml — removed redundant index (coordinate-map is single source), added meta.version_file
+- [META]: CLAUDE.md — aligned with rules/ (tech stack, backbone enforcement, shared resources, destructive ops constraint)

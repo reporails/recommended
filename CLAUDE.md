@@ -3,11 +3,18 @@
 
 Opinionated best-practice rules for AI agent instruction files. Depends on [reporails/rules](https://github.com/reporails/rules) (core).
 
+## Tech Stack
+
+- Markdown documentation
+- YAML schemas and configuration (referenced from rules/)
+- OpenGrep patterns for detection
+- No application code — framework only
+
 ## Initialization
 
 Read these files before searching or modifying anything:
 
-1. Read `.reporails/backbone.yml` for project structure, path resolution, and rule index
+1. Read `.reporails/backbone.yml` for project structure and path resolution
 2. Read `registry/coordinate-map.yml` for coordinate-to-slug mappings
 3. Read `.claude/rules/` for context-specific constraints on the current task
 
@@ -24,6 +31,8 @@ reporail/
 ## Structure
 
 Defined in `.reporails/backbone.yml` — the single source of truth for project topology, paths, and registry locations.
+
+**BEFORE** running `find`, `grep`, `ls`, or glob to locate project files, you **MUST** read `.reporails/backbone.yml` first. All registry paths, rule directories, agent configs, and doc locations are mapped there. You **MUST NOT** use exploratory commands to discover paths that the backbone already provides.
 
 ```
 core/{structure,content,efficiency,governance,maintenance}/  # Recommended rules
@@ -86,7 +95,17 @@ Key paths:
 - Use `files_with_matches` mode and `head_limit` to cap search results
 - For rule work, start with `.claude/rules/` instructions
 
+## Shared Resources
+
+Agent-agnostic knowledge lives in `.shared/`:
+
+- `.shared/knowledge/` — Domain reference (changelog format, validation)
+
+Skills in `.claude/skills/` are entry points that reference shared content.
+
 ## Skills
+
+Skills in `.claude/skills/` — each has a SKILL.md with workflow instructions.
 
 | Skill | Purpose |
 |-------|---------|
@@ -99,6 +118,7 @@ Key paths:
 - NEVER duplicate schemas — reference `../rules/schemas/` instead
 - NEVER hardcode agent paths in core rules — use `{{instruction_files}}`
 - NEVER read CHANGELOG.md — use UNRELEASED.md instead
+- NEVER execute destructive or irreversible operations without explicit user confirmation
 - ALWAYS create both rule.md and rule.yml for each rule
 - ALWAYS create tests/pass/ and tests/fail/ fixture directories
 - ALWAYS update registry/coordinate-map.yml when adding or removing rules
