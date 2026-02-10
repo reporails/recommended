@@ -1,0 +1,24 @@
+{
+  "allowedTools": [
+    "Bash",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep"
+  ],
+  "permissions": {
+    "network": "restricted",
+    "filesystem": "project-only"
+  },
+  "blockedCommands": [
+    "rm -rf /",
+    "curl | bash"
+  ],
+  "allowedCommands": [
+    "npm test",
+    "npm run build",
+    "git status",
+    "git diff"
+  ]
+}

@@ -1,0 +1,36 @@
+version: "1.0"
+
+maps:
+  components:
+    api:
+      path: src/api/
+      description: REST API endpoints
+    web:
+      path: src/web/
+      description: Frontend SPA
+    worker:
+      path: src/worker/
+      description: Background job processor
+    shared:
+      path: src/shared/
+      description: Cross-cutting utilities
+  platform:
+    ci: .github/workflows/
+    docker: docker/
+    terraform: infra/terraform/
+    monitoring: infra/monitoring/
+
+contracts:
+  api-schema: contracts/api.schema.json
+  event-schema: contracts/events.schema.json
+  config-schema: contracts/config.schema.json
+  db-migrations: migrations/
+
+quick_ref:
+  build: npm run build
+  test: npm test -- --coverage
+  lint: npm run lint
+  deploy-staging: ./scripts/deploy.sh staging
+  deploy-prod: ./scripts/deploy.sh production
+  migrate: npx prisma migrate deploy
+  seed: npx prisma db seed

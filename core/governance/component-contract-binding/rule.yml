@@ -1,0 +1,13 @@
+rules:
+  - id: RRAILS.G.0005.check.0001
+    message: "Component definition lacks contracts/rules/tests"
+    severity: WARNING
+    languages: [yaml]
+    patterns:
+      - pattern: |
+          components:
+            ...
+      - pattern-not-regex: "(contracts|rules|tests):"
+    paths:
+      include:
+        - ".reporails/backbone.yml"

@@ -1,0 +1,9 @@
+rules:
+  - id: RRAILS.C.0001.check.0001
+    message: "Vague instruction without specifics"
+    severity: WARNING
+    languages: [generic]
+    pattern-regex: "(?i)\\b(properly|correctly|appropriately|suitable|adequate)\\b(?![^\\n]*:)"
+    paths:
+      include:
+        - "{{instruction_files}}"

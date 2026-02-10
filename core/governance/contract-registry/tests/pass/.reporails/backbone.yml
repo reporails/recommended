@@ -1,0 +1,21 @@
+version: "1.0"
+
+maps:
+  components:
+    api: src/api/
+    web: src/web/
+    worker: src/worker/
+  platform:
+    ci: .github/workflows/
+    infra: terraform/
+
+contracts:
+  api-schema: contracts/api.schema.json
+  event-schema: contracts/events.schema.json
+  config-schema: contracts/config.schema.json
+
+quick_ref:
+  build: npm run build
+  test: npm test
+  deploy: ./scripts/deploy.sh
+  lint: npm run lint

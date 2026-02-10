@@ -1,0 +1,11 @@
+rules:
+  - id: RRAILS.G.0004.check.0001
+    message: "Backbone lacks contracts key"
+    severity: WARNING
+    languages: [yaml]
+    patterns:
+      - pattern-regex: "(?s)\\A[\\s\\S]+"
+      - pattern-not-regex: "(?m)^contracts:"
+    paths:
+      include:
+        - ".reporails/backbone.yml"

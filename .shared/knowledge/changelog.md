@@ -47,13 +47,13 @@ Add to `UNRELEASED.md` as you work:
 
 **Good:**
 ```markdown
-- [RULES]: AILS_G1 rule for governance practices
+- [RULES]: RRAILS:G:0001 rule for governance practices
 ```
 
 **Bad:**
 ```markdown
-- Added file AILS_G1/AILS_G1.md
-- Added file AILS_G1/AILS_G1.yml
+- Added file RRAILS:G:0001/RRAILS:G:0001.md
+- Added file RRAILS:G:0001/RRAILS:G:0001.yml
 ```
 
 ## Creating a Release

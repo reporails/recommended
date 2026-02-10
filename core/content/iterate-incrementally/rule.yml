@@ -1,0 +1,9 @@
+rules:
+  - id: RRAILS.C.0013.check.0001
+    message: "Instruction to iterate incrementally and test after each change"
+    severity: WARNING
+    languages: [generic]
+    pattern-regex: "(?i)(one\\s+(change|step)\\s+at\\s+a\\s+time|incremental(ly)?|test\\s+after\\s+each|small\\s+(change|step)s?.*test|iterate.*test|step\\s+by\\s+step|after\\s+each\\s+(change|modification|edit).*test)"
+    paths:
+      include:
+        - "{{instruction_files}}"

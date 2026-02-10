@@ -1,0 +1,9 @@
+rules:
+  - id: RRAILS.C.0014.check.0001
+    message: "Interaction language specified"
+    severity: WARNING
+    languages: [generic]
+    pattern-regex: "(?i)(respond\\s+in\\s+\\w+|reply\\s+in\\s+\\w+|communicate\\s+in\\s+\\w+|use\\s+\\w+\\s+(language|for\\s+(all\\s+)?responses)|language:\\s*\\w+|all\\s+(responses|output|communication)\\s+(in|should\\s+be\\s+in)\\s+\\w+|write\\s+in\\s+\\w+|answer\\s+in\\s+\\w+)"
+    paths:
+      include:
+        - "{{instruction_files}}"

@@ -1,17 +1,15 @@
 # Reporails Recommended Rules
 
-26 opinionated rules that validate the instructions you give to AI coding agents — files like `CLAUDE.md`, `.cursorrules`, and `copilot-instructions.md`. Supplementary to the [core rules](https://github.com/reporails/rules).
-
-**Version:** 0.0.1
+34 opinionated rules that validate the instructions you give to AI coding agents — files like `CLAUDE.md`, `.cursorrules`, and `copilot-instructions.md`. Supplementary to the [core rules](https://github.com/reporails/rules).
 
 ## Quick start
 
 ```bash
-# No install needed — validates your agent instructions with recommended rules included
-npx @reporails/cli check --with-recommended
+# Recommended rules are included by default
+ails check .
 ```
 
-You'll get a score, capability level, and actionable findings. Already have the [CLI](https://github.com/reporails/cli) installed? Run `ails check --with-recommended`.
+You'll get a score, capability level, and actionable findings. To opt out, set `recommended: false` in `.reporails/config.yml`.
 
 ## What these rules check
 
@@ -19,14 +17,14 @@ Content clarity, governance, efficiency, and maintenance of your agent instructi
 
 ```
 core/
-  structure/     # AILS_S1: Backbone structure
-  content/       # AILS_C1-C7: Clarity, explicitness, style
-  efficiency/    # AILS_E1-E6: Token optimization, context management
-  governance/    # AILS_G1-G7: Ownership, security, CI
-  maintenance/   # AILS_M1-M2: Review, change management
+  structure/     # RRAILS:S:0001 — Backbone structure (1 rule)
+  content/       # RRAILS:C:0001–C:0014 — Clarity, explicitness, style (13 rules)
+  efficiency/    # RRAILS:E:0001–E:0006 — Token optimization, context management (6 rules)
+  governance/    # RRAILS:G:0001–G:0007 — Ownership, security, CI (7 rules)
+  maintenance/   # RRAILS:M:0001–M:0002 — Review, change management (2 rules)
 
 agents/
-  claude/rules/  # AILS_CLAUDE_S1, AILS_CLAUDE_M1, AILS_CLAUDE_G1
+  claude/rules/  # RRAILS_CLAUDE — Claude-specific rules (5 rules)
 
 docs/            # Evidence sources backing each rule
 ```
@@ -37,9 +35,9 @@ docs/            # Evidence sources backing each rule
 
 | | Core | Recommended |
 |--------|------|-------------|
-| Prefix | `S1`, `CLAUDE_S1` | `AILS_S1`, `AILS_CLAUDE_S1` |
+| Prefix | `CORE:S:0001`, `CLAUDE:S:0001` | `RRAILS:S:0001`, `RRAILS_CLAUDE:S:0001` |
 | Nature | Objective | Opinionated |
-| Default | Always on | Opt-in |
+| Default | Always on | Included by default, opt-out via config |
 
 ## Contributing
 
@@ -47,4 +45,4 @@ See [CONTRIBUTING.md](https://github.com/reporails/rules/blob/main/CONTRIBUTING.
 
 ## License
 
-[CC BY 4.0](LICENSE)
+[CC BY-SA 4.0](LICENSE)
