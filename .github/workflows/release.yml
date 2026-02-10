@@ -43,9 +43,11 @@ jobs:
       - name: Check rule directories
         run: |
           errors=0
-          for dir in core/*/*/*/ agents/*/rules/*/; do
+          for dir in core/*/*/ agents/*/rules/*/; do
             [ -d "$dir" ] || continue
             slug=$(basename "$dir")
+            # Skip non-rule dirs (e.g. tests/)
+            [ -f "${dir}rule.md" ] || [ -f "${dir}rule.yml" ] || continue
             if [ ! -f "${dir}rule.md" ]; then
               echo "ERROR: ${dir} missing rule.md"
               errors=$((errors + 1))
@@ -110,8 +112,9 @@ jobs:
           echo "rules:" >> manifest.yml
 
           count=0
-          for dir in core/*/*/*/ agents/*/rules/*/; do
+          for dir in core/*/*/ agents/*/rules/*/; do
             [ -d "$dir" ] || continue
+            [ -f "${dir}rule.md" ] || continue
             slug=$(basename "$dir")
             coord=$(grep '^id:' "${dir}rule.md" | head -1 | sed 's/id: *"\?//;s/"\?$//')
             echo "  \"${coord}\": ${slug}" >> manifest.yml
