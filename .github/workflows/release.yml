@@ -2,57 +2,119 @@ name: Release
 
 on:
   push:
-    tags:
-      - '[0-9]*'
-
-permissions:
-  contents: write
+    branches: [main]
 
 jobs:
-  release:
+  check-release:
+    name: Check if release needed
+    runs-on: ubuntu-latest
+    outputs:
+      is_release: ${{ steps.check.outputs.is_release }}
+      version: ${{ steps.check.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compare VERSION against existing tags
+        id: check
+        run: |
+          VERSION=$(cat VERSION)
+          if [ -z "$VERSION" ]; then
+            echo "is_release=false" >> "$GITHUB_OUTPUT"
+            echo "VERSION file is empty"
+          elif git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "is_release=false" >> "$GITHUB_OUTPUT"
+            echo "Tag $VERSION already exists — not a release"
+          else
+            echo "is_release=true" >> "$GITHUB_OUTPUT"
+            echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+            echo "Release detected: $VERSION"
+          fi
+
+  validate:
+    name: Validate rule structure
+    needs: check-release
+    if: needs.check-release.outputs.is_release == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get version from tag
-        id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
-      - name: Validate rule structure
+      - name: Check rule directories
         run: |
           errors=0
-          for dir in core/*/AILS_*/ agents/*/rules/AILS_*/; do
+          for dir in core/*/*/*/ agents/*/rules/*/; do
             [ -d "$dir" ] || continue
-            id=$(basename "$dir" | cut -d- -f1)
             slug=$(basename "$dir")
-            if [ ! -f "${dir}${slug}.md" ]; then
-              echo "ERROR: ${dir} missing ${slug}.md"
+            if [ ! -f "${dir}rule.md" ]; then
+              echo "ERROR: ${dir} missing rule.md"
               errors=$((errors + 1))
             fi
-            if [ ! -f "${dir}${slug}.yml" ]; then
-              echo "ERROR: ${dir} missing ${slug}.yml"
+            if [ ! -f "${dir}rule.yml" ]; then
+              echo "ERROR: ${dir} missing rule.yml"
+              errors=$((errors + 1))
+            fi
+            if [ ! -d "${dir}tests/pass" ]; then
+              echo "ERROR: ${dir} missing tests/pass/"
+              errors=$((errors + 1))
+            fi
+            if [ ! -d "${dir}tests/fail" ]; then
+              echo "ERROR: ${dir} missing tests/fail/"
               errors=$((errors + 1))
             fi
           done
           if [ "$errors" -gt 0 ]; then
-            echo "Found $errors errors"
+            echo "Found $errors structural errors"
             exit 1
           fi
           echo "All rule directories valid"
 
+  qa:
+    name: QA gate
+    needs: [check-release, validate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: recommended
+
+      - uses: actions/checkout@v4
+        with:
+          repository: reporails/rules
+          path: rules
+
+      - name: Build test image
+        run: docker build -t reporails-test rules/runtime/
+
+      - name: Run test harness
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/rules:/rules:ro \
+            -v ${{ github.workspace }}/recommended:/recommended:ro \
+            reporails-test --package /recommended
+
+  release:
+    name: Publish release
+    needs: [check-release, validate, qa]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Generate manifest
         run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
+          VERSION="${{ needs.check-release.outputs.version }}"
 
           echo "release: \"${VERSION}\"" > manifest.yml
           echo "rules:" >> manifest.yml
 
           count=0
-          for dir in core/*/AILS_*/ agents/*/rules/AILS_*/; do
+          for dir in core/*/*/*/ agents/*/rules/*/; do
             [ -d "$dir" ] || continue
-            id=$(basename "$dir" | cut -d- -f1)
             slug=$(basename "$dir")
-            echo "  ${id}: ${slug}" >> manifest.yml
+            coord=$(grep '^id:' "${dir}rule.md" | head -1 | sed 's/id: *"\?//;s/"\?$//')
+            echo "  \"${coord}\": ${slug}" >> manifest.yml
             count=$((count + 1))
           done
 
@@ -60,21 +122,27 @@ jobs:
 
       - name: Create tarball
         run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
+          VERSION="${{ needs.check-release.outputs.version }}"
 
           tar -czvf reporails-recommended-${VERSION}.tar.gz \
             manifest.yml \
             levels.yml \
+            registry/ \
             core/ \
             agents/ \
             docs/sources.yml
 
           sha256sum reporails-recommended-${VERSION}.tar.gz > checksums.txt
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          generate_release_notes: true
-          files: |
-            reporails-recommended-*.tar.gz
+      - name: Create tag and GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ needs.check-release.outputs.version }}"
+          git tag "$VERSION"
+          git push origin "$VERSION"
+          gh release create "$VERSION" \
+            --title "v$VERSION" \
+            --generate-notes \
+            reporails-recommended-${VERSION}.tar.gz \
             checksums.txt
