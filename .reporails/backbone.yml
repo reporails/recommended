@@ -1,4 +1,4 @@
-version: 2
+version: 3
 generator: manual
 
 depends_on:
@@ -10,11 +10,11 @@ rules:
   core: core/
   agents: agents/
   patterns:
-    rule_dir: "{category}/{id}-{slug}/"
-    definition: "{id}-{slug}.md"
-    opengrep: "{id}-{slug}.yml"
-    test_pass: "tests/pass.{ext}"
-    test_fail: "tests/fail.{ext}"
+    rule_dir: "{category}/{slug}/"
+    definition: "rule.md"
+    opengrep: "rule.yml"
+    test_pass: "tests/pass/"
+    test_fail: "tests/fail/"
   categories:
     structure: core/structure/
     content: core/content/
@@ -24,35 +24,19 @@ rules:
   agent_rules:
     claude: agents/claude/rules/
 
-  index:
-    # Core recommended rules
-    AILS_S1: yaml-backbone
-    AILS_C1: explicit-over-implicit
-    AILS_C2: context-specific-content
-    AILS_C3: anti-pattern-documentation
-    AILS_C4: must-must-not-with-context
-    AILS_C5: emphasis-discipline
-    AILS_C6: instructions-over-philosophy
-    AILS_C7: has-never-statements
-    AILS_E1: deterministic-tools-for-style
-    AILS_E2: session-start-ritual
-    AILS_E3: purpose-based-file-reading
-    AILS_E4: memory-reference
-    AILS_E5: grep-efficiency
-    AILS_E6: context-window-awareness
-    AILS_G1: team-governance-structure
-    AILS_G2: security-rules-ownership
-    AILS_G3: ownership-assignment
-    AILS_G4: contract-registry
-    AILS_G5: component-contract-binding
-    AILS_G6: architecture-tests
-    AILS_G7: metrics-and-cicd-checks
-    AILS_M1: review-process
-    AILS_M2: change-management
-    # Agent rules
-    AILS_CLAUDE_S1: skill-size-limits
-    AILS_CLAUDE_M1: rule-snippet-length
-    AILS_CLAUDE_G1: organization-level-policies
+agents:
+  claude:
+    config: agents/claude/config.yml
+
+registry:
+  coordinate_map: registry/coordinate-map.yml
+  tombstones: registry/tombstones.yml
+
+meta:
+  version_file: VERSION
+
+docs:
+  sources: docs/sources.yml
 
 artifacts:
   levels: levels.yml
