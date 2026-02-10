@@ -8,6 +8,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 - Initial release: 26 recommended rules split from reporails/rules
-- AILS_ namespace for all rules (AILS_S1, AILS_C1, etc.)
-- Claude agent severity overrides (AILS_E2, AILS_E4, AILS_E5)
-- Supplementary levels.yml with AILS_ rule mappings
+- RRAILS_ namespace for all rules (RRAILS:S:0001, RRAILS:C:0001, etc.)
+- Claude agent severity overrides (RRAILS:E:0002, RRAILS:E:0004, RRAILS:E:0005)
+- Supplementary levels.yml with RRAILS_ rule mappings
