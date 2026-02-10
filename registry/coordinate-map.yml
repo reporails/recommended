@@ -1,0 +1,48 @@
+# Coordinate map for the RRAILS (Recommended) package.
+# Per-package registry — scoped to RRAILS:* and RRAILS_CLAUDE:* namespaces only.
+
+version: 1
+
+core:
+  structure:
+    yaml-backbone: "RRAILS:S:0001"
+  content:
+    explicit-over-implicit: "RRAILS:C:0001"
+    context-specific-content: "RRAILS:C:0002"
+    anti-pattern-documentation: "RRAILS:C:0003"
+    must-must-not-with-context: "RRAILS:C:0004"
+    emphasis-discipline: "RRAILS:C:0005"
+    instructions-over-philosophy: "RRAILS:C:0006"
+    has-never-statements: "RRAILS:C:0007"
+    no-linter-enforceable-style: "RRAILS:C:0008"
+    negative-constraints-have-alternatives: "RRAILS:C:0010"
+    pointers-over-copies: "RRAILS:C:0011"
+    check-before-implement: "RRAILS:C:0012"
+    iterate-incrementally: "RRAILS:C:0013"
+    specify-interaction-language: "RRAILS:C:0014"
+  efficiency:
+    deterministic-tools-for-style: "RRAILS:E:0001"
+    session-start-ritual: "RRAILS:E:0002"
+    purpose-based-file-reading: "RRAILS:E:0003"
+    memory-reference: "RRAILS:E:0004"
+    grep-efficiency: "RRAILS:E:0005"
+    context-window-awareness: "RRAILS:E:0006"
+  governance:
+    team-governance-structure: "RRAILS:G:0001"
+    security-rules-ownership: "RRAILS:G:0002"
+    ownership-assignment: "RRAILS:G:0003"
+    contract-registry: "RRAILS:G:0004"
+    component-contract-binding: "RRAILS:G:0005"
+    architecture-tests: "RRAILS:G:0006"
+    metrics-and-cicd-checks: "RRAILS:G:0007"
+  maintenance:
+    review-process: "RRAILS:M:0001"
+    change-management: "RRAILS:M:0002"
+
+agents:
+  claude:
+    skill-size-limits: "RRAILS_CLAUDE:S:0001"
+    rule-snippet-length: "RRAILS_CLAUDE:M:0001"
+    no-external-doc-imports: "RRAILS_CLAUDE:S:0002"
+    universal-in-claude-md-targeted-in-rules: "RRAILS_CLAUDE:S:0003"
+    organization-level-policies: "RRAILS_CLAUDE:G:0001"

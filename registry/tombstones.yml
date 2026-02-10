@@ -1,0 +1,6 @@
+# Dead coordinate slots — never reused.
+# Per-package registry — scoped to RRAILS:* and RRAILS_CLAUDE:* namespaces only.
+
+version: 1
+
+tombstones: []

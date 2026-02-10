@@ -1,0 +1,11 @@
+rules:
+  - id: RRAILS.G.0006.check.0001
+    message: "Architecture test indicators"
+    severity: WARNING
+    languages: [generic]
+    pattern-regex: "(?i)(architecture|arch|boundary|layer).*(test|spec)"
+    paths:
+      include:
+        - "**/tests/**/*"
+        - "**/*.test.*"
+        - "**/*.spec.*"

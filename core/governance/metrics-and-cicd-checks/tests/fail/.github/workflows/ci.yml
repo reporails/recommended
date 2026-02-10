@@ -1,0 +1,51 @@
+name: build-and-validate
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run lint
+
+  validate-instructions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate CLAUDE.md instruction files
+        run: reporail validate --strict
+      - name: Check instruction file size
+        run: |
+          for f in $(find . -name "CLAUDE.md"); do
+            size=$(wc -c < "$f")
+            if [ "$size" -gt 32768 ]; then
+              echo "FAIL: $f exceeds 32KiB"
+              exit 1
+            fi
+          done
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [lint, validate-instructions]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm run build

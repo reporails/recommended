@@ -1,0 +1,9 @@
+rules:
+  - id: RRAILS.E.0006.check.0001
+    message: "Redundant token management instruction"
+    severity: WARNING
+    languages: [generic]
+    pattern-regex: "(?i)(watch|mindful|careful|aware).*(token|context).*(limit|window|usage)"
+    paths:
+      include:
+        - "{{instruction_files}}"
