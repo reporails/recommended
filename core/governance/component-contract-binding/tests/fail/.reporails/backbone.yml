@@ -1,0 +1,17 @@
+version: "1.0"
+
+components:
+  api:
+    path: src/api/
+  web:
+    path: src/web/
+  worker:
+    path: src/worker/
+
+maps:
+  platform:
+    ci: .github/workflows/
+
+quick_ref:
+  build: npm run build
+  deploy: ./scripts/deploy.sh

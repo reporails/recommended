@@ -1,0 +1,11 @@
+rules:
+  - id: RRAILS.C.0004.check.0001
+    message: "Binary rule without rationale"
+    severity: WARNING
+    languages: [generic]
+    patterns:
+      - pattern-regex: "\\b(MUST|MUST NOT)\\b"
+      - pattern-not-regex: "\\b(MUST|MUST NOT)\\b[^\\n]*([—–-]|\\(|because|since)"
+    paths:
+      include:
+        - "{{instruction_files}}"

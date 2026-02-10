@@ -2,6 +2,7 @@
 # Supplementary to core levels (reporails/rules).
 #
 # These rules provide opinionated best practices for higher-quality instruction files.
+# Coordinate format: RRAILS:{CATEGORY}:{SLOT} or RRAILS_CLAUDE:{CATEGORY}:{SLOT}
 
 levels:
   L0:
@@ -17,24 +18,58 @@ levels:
   L2:
     name: Scoped
     description: Project-specific constraints, size limits, content quality
-    rules: [AILS_C1, AILS_C3, AILS_C4, AILS_C5, AILS_C6, AILS_C7]
+    rules:
+      - "RRAILS:C:0001"  # explicit-over-implicit
+      - "RRAILS:C:0003"  # anti-pattern-documentation
+      - "RRAILS:C:0004"  # must-must-not-with-context
+      - "RRAILS:C:0005"  # emphasis-discipline
+      - "RRAILS:C:0006"  # instructions-over-philosophy
+      - "RRAILS:C:0007"  # has-never-statements
+      - "RRAILS:C:0008"  # no-linter-enforceable-style
+      - "RRAILS:C:0014"  # specify-interaction-language
+      - "RRAILS_CLAUDE:S:0002"  # no-external-doc-imports
 
   L3:
     name: Structured
     description: Clear sections, external references, organized content
-    rules: [AILS_C2, AILS_E1, AILS_E6, AILS_M1]
+    rules:
+      - "RRAILS:C:0002"  # context-specific-content
+      - "RRAILS:C:0010"  # negative-constraints-have-alternatives
+      - "RRAILS:C:0011"  # pointers-over-copies
+      - "RRAILS:C:0012"  # check-before-implement
+      - "RRAILS:C:0013"  # iterate-incrementally
+      - "RRAILS:E:0001"  # deterministic-tools-for-style
+      - "RRAILS:E:0006"  # context-window-awareness
+      - "RRAILS:M:0001"  # review-process
+      - "RRAILS_CLAUDE:S:0003"  # universal-in-claude-md-targeted-in-rules
 
   L4:
     name: Abstracted
     description: Rules directory, path-scoped loading
-    rules: [AILS_CLAUDE_S1, AILS_CLAUDE_M1, AILS_E3, AILS_E4, AILS_E5, AILS_M2]
+    rules:
+      - "RRAILS_CLAUDE:S:0001"  # skill-size-limits
+      - "RRAILS_CLAUDE:M:0001"  # rule-snippet-length
+      - "RRAILS:E:0003"  # purpose-based-file-reading
+      - "RRAILS:E:0004"  # memory-reference
+      - "RRAILS:E:0005"  # grep-efficiency
+      - "RRAILS:M:0002"  # change-management
 
   L5:
-    name: Governed
-    description: Team policies, process controls, compliance tracking
-    rules: [AILS_CLAUDE_G1, AILS_G1, AILS_G2, AILS_G3, AILS_G6, AILS_G7]
+    name: Maintained
+    description: Team policies, process controls, structural integrity
+    rules:
+      - "RRAILS_CLAUDE:G:0001"  # organization-level-policies
+      - "RRAILS:G:0001"  # team-governance-structure
+      - "RRAILS:G:0002"  # security-rules-ownership
+      - "RRAILS:G:0003"  # ownership-assignment
+      - "RRAILS:G:0006"  # architecture-tests
+      - "RRAILS:G:0007"  # metrics-and-cicd-checks
 
   L6:
     name: Adaptive
     description: Backbone-driven navigation, contracts
-    rules: [AILS_S1, AILS_E2, AILS_G4, AILS_G5]
+    rules:
+      - "RRAILS:S:0001"  # yaml-backbone
+      - "RRAILS:E:0002"  # session-start-ritual
+      - "RRAILS:G:0004"  # contract-registry
+      - "RRAILS:G:0005"  # component-contract-binding

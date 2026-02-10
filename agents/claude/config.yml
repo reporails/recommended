@@ -26,11 +26,11 @@ vars:
 # Severity adjustments for Claude-specific behavior
 overrides:
   # L6 pattern — most projects are L2-L4, ritual is optimization not requirement
-  AILS_E2-no-ritual-section:
+  RRAILS:E:0002:
     severity: medium
   # Claude's grep tool has sensible defaults (files_with_matches mode)
-  AILS_E5-no-grep-guidance:
+  RRAILS:E:0005:
     severity: low
   # Claude manages context automatically; memory instruction has limited impact
-  AILS_E4-no-memory-instruction:
+  RRAILS:E:0004:
     severity: low

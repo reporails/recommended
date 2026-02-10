@@ -1,0 +1,10 @@
+{
+  "theme": "dark",
+  "language": "en",
+  "editor": {
+    "fontSize": 14,
+    "tabSize": 2,
+    "wordWrap": true
+  },
+  "telemetry": false
+}

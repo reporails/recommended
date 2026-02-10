@@ -1,0 +1,11 @@
+rules:
+  - id: RRAILS.E.0003.check.0001
+    message: "No file reading strategy documented"
+    severity: WARNING
+    languages: [generic]
+    patterns:
+      - pattern-regex: "(?s)\\A#[\\s\\S]+"
+      - pattern-not-regex: "(?i)(read|reading).*(purpose|strategy|full|partial|EDIT|UNDERSTAND)"
+    paths:
+      include:
+        - "{{main_instruction_file}}"

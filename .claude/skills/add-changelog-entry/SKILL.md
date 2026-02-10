@@ -38,7 +38,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security
 
 ## Areas
 
-- [RULES] – Recommended rule definitions (AILS_ namespace)
+- [RULES] – Recommended rule definitions (RRAILS namespace)
 - [DOCS] – README, general documentation
 - [META] – CLAUDE.md, backbone.yml, repo structure
 
@@ -46,7 +46,7 @@ Added, Changed, Deprecated, Removed, Fixed, Security
 
 ```markdown
 ### Added
-- [RULES]: AILS_G1 rule for governance practices
+- [RULES]: RRAILS:G:0001 rule for governance practices
 
 ### Changed
 - [DOCS]: Updated README with new rule list

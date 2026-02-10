@@ -1,0 +1,66 @@
+rules:
+  - id: RRAILS.S.0001.check.0001
+    message: "Backbone missing 'maps:' section"
+    severity: ERROR
+    languages: [yaml]
+    patterns:
+      - pattern-regex: "(?s)\\A[\\s\\S]+"
+      - pattern-not-regex: "(?m)^maps:"
+    paths:
+      include:
+        - ".reporails/backbone.yml"
+
+  - id: RRAILS.S.0001.check.0002
+    message: "Backbone missing 'contracts:' section"
+    severity: WARNING
+    languages: [yaml]
+    patterns:
+      - pattern-regex: "(?s)\\A[\\s\\S]+"
+      - pattern-not-regex: "(?m)^contracts:"
+    paths:
+      include:
+        - ".reporails/backbone.yml"
+
+  - id: RRAILS.S.0001.check.0003
+    message: "Backbone missing 'quick_ref:' section"
+    severity: WARNING
+    languages: [yaml]
+    patterns:
+      - pattern-regex: "(?s)\\A[\\s\\S]+"
+      - pattern-not-regex: "(?m)^quick_ref:"
+    paths:
+      include:
+        - ".reporails/backbone.yml"
+
+  - id: RRAILS.S.0001.check.0004
+    message: "Maps section missing 'components:' key"
+    severity: WARNING
+    languages: [yaml]
+    patterns:
+      - pattern-regex: "(?sm)\\A(?=[\\s\\S]*^maps:)[\\s\\S]+"
+      - pattern-not-regex: "(?m)^\\s+components:"
+    paths:
+      include:
+        - ".reporails/backbone.yml"
+
+  - id: RRAILS.S.0001.check.0005
+    message: "Maps section missing 'platform:' key"
+    severity: WARNING
+    languages: [yaml]
+    patterns:
+      - pattern-regex: "(?sm)\\A(?=[\\s\\S]*^maps:)[\\s\\S]+"
+      - pattern-not-regex: "(?m)^\\s+platform:"
+    paths:
+      include:
+        - ".reporails/backbone.yml"
+
+  - id: RRAILS.S.0001.check.0006
+    message: "Backbone file appears empty or minimal"
+    severity: ERROR
+    languages: [yaml]
+    patterns:
+      - pattern-regex: "(?s)\\A\\s*$"
+      - pattern-not-regex: "(?m)^[a-z_]+:"
+    paths:
+      include:
+        - ".reporails/backbone.yml"
