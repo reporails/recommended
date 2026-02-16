@@ -2,7 +2,7 @@
 # Supplementary to core levels (reporails/rules).
 #
 # These rules provide opinionated best practices for higher-quality instruction files.
-# Coordinate format: RRAILS:{CATEGORY}:{SLOT} or RRAILS_CLAUDE:{CATEGORY}:{SLOT}
+# Coordinate format: RRAILS:{CATEGORY}:{SLOT}
 
 levels:
   L0:
@@ -17,59 +17,43 @@ levels:
 
   L2:
     name: Scoped
-    description: Project-specific constraints, size limits, content quality
+    description: Basic quality gates — size limits, emphasis control, universal scope
     rules:
-      - "RRAILS:C:0001"  # explicit-over-implicit
-      - "RRAILS:C:0003"  # anti-pattern-documentation
-      - "RRAILS:C:0004"  # must-must-not-with-context
-      - "RRAILS:C:0005"  # emphasis-discipline
-      - "RRAILS:C:0006"  # instructions-over-philosophy
-      - "RRAILS:C:0007"  # has-never-statements
-      - "RRAILS:C:0008"  # no-linter-enforceable-style
-      - "RRAILS:C:0014"  # specify-interaction-language
-      - "RRAILS_CLAUDE:S:0002"  # no-external-doc-imports
+      - "RRAILS:S:0001"  # instruction-file-line-limit
+      - "RRAILS:C:0001"  # universal-applicability
+      - "RRAILS:C:0003"  # actionable-alternatives-for-prohibitions
+      - "RRAILS:E:0001"  # exclude-deterministic-tool-guidance
+      - "RRAILS:E:0002"  # emphasis-budget
 
   L3:
     name: Structured
-    description: Clear sections, external references, organized content
+    description: Structural organization — references, progressive disclosure, deduplication
     rules:
-      - "RRAILS:C:0002"  # context-specific-content
-      - "RRAILS:C:0010"  # negative-constraints-have-alternatives
-      - "RRAILS:C:0011"  # pointers-over-copies
-      - "RRAILS:C:0012"  # check-before-implement
-      - "RRAILS:C:0013"  # iterate-incrementally
-      - "RRAILS:E:0001"  # deterministic-tools-for-style
-      - "RRAILS:E:0006"  # context-window-awareness
-      - "RRAILS:M:0001"  # review-process
-      - "RRAILS_CLAUDE:S:0003"  # universal-in-claude-md-targeted-in-rules
+      - "RRAILS:S:0002"  # progressive-disclosure
+      - "RRAILS:C:0002"  # reference-over-duplication
+      - "RRAILS:C:0004"  # context-aware-file-references
+      - "RRAILS:C:0005"  # testing-conventions-documentation
+      - "RRAILS:E:0003"  # no-duplicate-instructions-across-files
+      - "RRAILS:M:0001"  # one-concern-per-rule-file
+      - "RRAILS:M:0002"  # live-external-references
 
   L4:
     name: Abstracted
-    description: Rules directory, path-scoped loading
+    description: Semantic quality — cross-file consistency, accuracy, convention alignment
     rules:
-      - "RRAILS_CLAUDE:S:0001"  # skill-size-limits
-      - "RRAILS_CLAUDE:M:0001"  # rule-snippet-length
-      - "RRAILS:E:0003"  # purpose-based-file-reading
-      - "RRAILS:E:0004"  # memory-reference
-      - "RRAILS:E:0005"  # grep-efficiency
-      - "RRAILS:M:0002"  # change-management
+      - "RRAILS:S:0003"  # scope-appropriate-instruction-placement
+      - "RRAILS:C:0006"  # coding-convention-alignment
+      - "RRAILS:C:0007"  # architecture-description-accuracy
+      - "RRAILS:C:0008"  # relevant-code-examples
+      - "RRAILS:E:0004"  # no-internal-contradictions
+      - "RRAILS:M:0003"  # accurate-version-references
 
   L5:
     name: Maintained
     description: Team policies, process controls, structural integrity
-    rules:
-      - "RRAILS_CLAUDE:G:0001"  # organization-level-policies
-      - "RRAILS:G:0001"  # team-governance-structure
-      - "RRAILS:G:0002"  # security-rules-ownership
-      - "RRAILS:G:0003"  # ownership-assignment
-      - "RRAILS:G:0006"  # architecture-tests
-      - "RRAILS:G:0007"  # metrics-and-cicd-checks
+    rules: []
 
   L6:
     name: Adaptive
     description: Backbone-driven navigation, contracts
-    rules:
-      - "RRAILS:S:0001"  # yaml-backbone
-      - "RRAILS:E:0002"  # session-start-ritual
-      - "RRAILS:G:0004"  # contract-registry
-      - "RRAILS:G:0005"  # component-contract-binding
+    rules: []

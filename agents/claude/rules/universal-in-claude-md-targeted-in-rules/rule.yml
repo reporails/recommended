@@ -1,9 +1,0 @@
-rules:
-  - id: RRAILS_CLAUDE.S.0003.check.0001
-    message: "CLAUDE.md contains directory-specific or file-type-specific instructions that belong in .claude/rules/"
-    severity: WARNING
-    languages: [generic]
-    pattern-regex: "(When (working on|editing|modifying) (the )?(`?\\w+/|`?src/|`?lib/|`?tests?/|`?api/)|(For|In) (`?\\.(py|ts|js|go|rs|java|rb|yml|yaml|json) files?|`?\\w+/ (files|directory)))"
-    paths:
-      include:
-        - "{{main_instruction_file}}"

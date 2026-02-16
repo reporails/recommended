@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.2.0 — 2026-02-16
+
+**Breaking**: Complete rule set overhaul. Coordinates reassigned — 0.1.0 coordinate→slug mappings are invalid in 0.2.0. All rules rewritten with evidence-backed definitions and standardized check schemas.
+
+### Added
+- 3 new rules: S:0002 (progressive-disclosure), S:0003 (scope-appropriate-instruction-placement), M:0003 (accurate-version-references)
+- Fail test fixtures for all 18 rules
+
+### Removed
+- All 5 RRAILS_CLAUDE agent-specific rules — namespace emptied (Claude-specific rules out of scope for agent-agnostic package)
+- All 7 RRAILS:G governance rules — category emptied (organizational policy, not instruction quality)
+- 5 content rules: C:0010 (negative-constraints-have-alternatives), C:0011 (pointers-over-copies), C:0012 (check-before-implement), C:0013 (iterate-incrementally), C:0014 (specify-interaction-language)
+- 2 efficiency rules: E:0005 (grep-efficiency), E:0006 (context-window-awareness)
+
+### Changed
+- **34 → 18 rules**: focused on instruction file quality (content, structure, efficiency, maintenance)
+- All 15 retained coordinates reassigned to new rules with updated slugs, definitions, and checks
+- levels.yml rebuilt: 18 rules across L2 (5), L3 (7), L4 (6); L5–L6 empty (no recommended contributions)
+- Coordinate map simplified: flat YAML, alphabetical within categories
+- sources.yml trimmed to 12 evidence sources backing current rule set
+- 8 semantic/mechanical rules use stub rule.yml (no OpenGrep patterns — checked via M/D chain)
+
 ## 0.1.0 — 2026-02-10
 
 ### Added

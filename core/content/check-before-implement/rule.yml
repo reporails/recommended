@@ -1,9 +1,0 @@
-rules:
-  - id: RRAILS.C.0012.check.0001
-    message: "Instruction to check existing code before implementing"
-    severity: WARNING
-    languages: [generic]
-    pattern-regex: "(?i)(search(\\s+the)?\\s+(codebase|existing|for)|check(\\s+for)?\\s+existing|look\\s+for\\s+existing|grep|before\\s+(creating|implementing|writing|adding).*\\b(search|check|look|find)\\b|\\b(find|look)\\s+(for\\s+)?(existing|similar|duplicate))"
-    paths:
-      include:
-        - "{{instruction_files}}"

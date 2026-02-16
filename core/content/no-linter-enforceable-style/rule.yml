@@ -1,9 +1,0 @@
-rules:
-  - id: RRAILS.C.0008.check.0001
-    message: "Linter-enforceable style rule found in instruction file"
-    severity: WARNING
-    languages: [generic]
-    pattern-regex: "(?i)\\b(indent(ation)?\\s+(with\\s+)?\\d+\\s*(space|tab)|max(imum)?\\s+\\d+\\s*char|line.?length\\s*(of|is|:|=)\\s*\\d+|opening\\s+brace|trailing\\s+(comma|semicolon)|\\d+[- ]space\\s+indent)"
-    paths:
-      include:
-        - "{{instruction_files}}"
