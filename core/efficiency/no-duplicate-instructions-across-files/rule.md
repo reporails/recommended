@@ -34,9 +34,7 @@ No overlap between the two files.
 ### Fail
 
 ~~~~markdown
-CLAUDE.md says 'use named exports, no any types'.
- .claude/rules/code-style.md also says 'use named exports, no any types'.
-Both load in every session, doubling token cost for identical instructions.
+(File does not exist at expected path)
 ~~~~
 
 ## Limitations

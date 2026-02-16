@@ -39,7 +39,7 @@ A CLAUDE.md file at 85 lines covering project context, commands, conventions, an
 ### Fail
 
 ~~~~markdown
-A CLAUDE.md file at 450 lines containing embedded code style guides, full API documentation, deployment procedures, and testing frameworks — all competing for attention in every session
+(File does not exist at expected path)
 ~~~~
 
 ## Limitations

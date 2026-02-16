@@ -37,12 +37,7 @@ Instruction files containing URLs SHOULD only reference accessible resources, be
 ### Fail
 
 ~~~~markdown
-## Resources
-
-- [Old API docs](https://api.example.com/v1/docs)
-- [Deprecated lib](https://github.com/archived/repo)
-
-(First URL returns 404, second is archived — agent may cite dead resources)
+(File does not exist at expected path)
 ~~~~
 
 ## Limitations
