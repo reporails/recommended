@@ -1,3 +1,6 @@
+# Source Registry — Recommended Package
+# Schema: rules/schemas/sources.schema.yml
+# Contains only sources backing rules in the RRAILS/RRAILS_CLAUDE namespaces.
 - id: agents-md-spec
   url: https://agents.md/
   type: official
