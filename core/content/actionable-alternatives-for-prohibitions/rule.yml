@@ -1,0 +1,10 @@
+rules:
+- id: RRAILS.C.0003.bare-prohibition
+  message: Bare prohibition
+  severity: WARNING
+  languages:
+  - generic
+  paths:
+    include:
+    - '{{instruction_files}}'
+  pattern-regex: (?im)^-\s*(?:never|don.t|do\s+not)\s+[^;\n]+$

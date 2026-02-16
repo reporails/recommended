@@ -1,0 +1,10 @@
+rules:
+- id: RRAILS.M.0003.no-trailing-etc
+  message: No trailing etc
+  severity: WARNING
+  languages:
+  - generic
+  paths:
+    include:
+    - '{{instruction_files}}'
+  pattern-regex: (?i)\b(etc\.?|and\s+so\s+on|and\s+more)\b

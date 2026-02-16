@@ -1,9 +1,0 @@
-rules:
-  - id: RRAILS_CLAUDE.S.0002.check.0001
-    message: "@-import references external documentation (node_modules, vendor, or external packages)"
-    severity: WARNING
-    languages: [generic]
-    pattern-regex: '@(node_modules|vendor|bower_components|\.?packages|external)/[^\s]+'
-    paths:
-      include:
-        - "{{instruction_files}}"

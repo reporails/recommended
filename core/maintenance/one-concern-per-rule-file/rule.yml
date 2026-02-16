@@ -1,0 +1,11 @@
+rules:
+- id: RRAILS.M.0001.multiple-concerns
+  message: Multiple concerns
+  severity: WARNING
+  languages:
+  - generic
+  paths:
+    include:
+    - '{{supplementary_files}}'
+  pattern-regex: 
+    (?m)^##\s+.*\n[\s\S]*?^##\s+.*\n[\s\S]*?^##\s+.*\n[\s\S]*?^##\s+

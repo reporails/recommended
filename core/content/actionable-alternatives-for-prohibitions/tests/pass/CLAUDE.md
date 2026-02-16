@@ -1,0 +1,2 @@
+- Never use console.log for debugging; use the project logger at src/lib/logger.ts instead
+- Do not install new dependencies without checking package.json first; prefer existing packages

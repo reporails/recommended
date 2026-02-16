@@ -1,0 +1,1 @@
+A CLAUDE.md file at 450 lines containing embedded code style guides, full API documentation, deployment procedures, and testing frameworks — all competing for attention in every session

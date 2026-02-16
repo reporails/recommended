@@ -6,6 +6,8 @@ version: 1
 core:
   structure:
     yaml-backbone: "RRAILS:S:0001"
+    progressive-disclosure: "RRAILS:S:0002"
+    scope-appropriate-instruction-placement: "RRAILS:S:0003"
   content:
     explicit-over-implicit: "RRAILS:C:0001"
     context-specific-content: "RRAILS:C:0002"
@@ -39,6 +41,7 @@ core:
     review-process: "RRAILS:M:0001"
     change-management: "RRAILS:M:0002"
 
+    accurate-version-references: "RRAILS:M:0003"
 agents:
   claude:
     skill-size-limits: "RRAILS_CLAUDE:S:0001"
