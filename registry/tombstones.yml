@@ -1,5 +1,6 @@
 # Dead coordinate slots — never reused.
 # Per-package registry — scoped to RRAILS:* and RRAILS_CLAUDE:* namespaces only.
+# Tombstone tracking begins at 0.5.0.
 
 version: 1
 
