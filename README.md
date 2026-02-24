@@ -2,11 +2,13 @@
 
 Opinionated best-practice rules that validate the instructions you give to AI coding agents — files like `CLAUDE.md`, `.cursorrules`, and `copilot-instructions.md`. Supplementary to the [core rules](https://github.com/reporails/rules).
 
+> **0.3.0 is a transitional release.** All rules have been removed while packaging is reworked. Rules will be re-added under the new structure.
+
 ## Quick start
 
 ```bash
 # Recommended rules are included by default
-ails check .
+ails check
 ```
 
 You'll get a score, capability level, and actionable findings. To opt out, set `recommended: false` in `.reporails/config.yml`.
