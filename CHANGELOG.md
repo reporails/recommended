@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.3.0 — 2026-02-24
+
+**Breaking**: All 18 rules removed for packaging overhaul. Package is empty — rules will be re-added under the new packaging structure.
+
+### Removed
+- All 18 rules, levels.yml, docs/sources.yml, agent configs cleared for packaging overhaul
+
+### Changed
+- backbone.yml, coordinate-map.yml, CLAUDE.md, README.md stripped of stale references
+- release.yml tarball updated for empty package state
+
 ## 0.2.0 — 2026-02-16
 
 **Breaking**: Complete rule set overhaul. Coordinates reassigned — 0.1.0 coordinate→slug mappings are invalid in 0.2.0. All rules rewritten with evidence-backed definitions and standardized check schemas.
