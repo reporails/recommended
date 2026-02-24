@@ -1,1 +1,0 @@
-A CLAUDE.md file at 85 lines covering project context, commands, conventions, and pointers to detailed docs

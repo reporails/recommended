@@ -1,29 +1,6 @@
 # Coordinate map for the RRAILS (Recommended) package.
-# Per-package registry — scoped to RRAILS:* and RRAILS_CLAUDE:* namespaces only.
+# Per-package registry — scoped to RRAILS:* namespace only.
 
-version: 1
-core:
-  content:
-    actionable-alternatives-for-prohibitions: RRAILS:C:0003
-    architecture-description-accuracy: RRAILS:C:0007
-    coding-convention-alignment: RRAILS:C:0006
-    context-aware-file-references: RRAILS:C:0004
-    reference-over-duplication: RRAILS:C:0002
-    relevant-code-examples: RRAILS:C:0008
-    testing-conventions-documentation: RRAILS:C:0005
-    universal-applicability: RRAILS:C:0001
-  efficiency:
-    emphasis-budget: RRAILS:E:0002
-    exclude-deterministic-tool-guidance: RRAILS:E:0001
-    no-duplicate-instructions-across-files: RRAILS:E:0003
-    no-internal-contradictions: RRAILS:E:0004
-  maintenance:
-    accurate-version-references: RRAILS:M:0003
-    live-external-references: RRAILS:M:0002
-    one-concern-per-rule-file: RRAILS:M:0001
-  structure:
-    instruction-file-line-limit: RRAILS:S:0001
-    progressive-disclosure: RRAILS:S:0002
-    scope-appropriate-instruction-placement: RRAILS:S:0003
-  governance: {}
+version: 2
+core: {}
 agents: {}

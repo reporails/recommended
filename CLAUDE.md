@@ -1,5 +1,5 @@
 # Reporails Recommended Package
-<!-- Last updated: 2026-02-10 -->
+<!-- Last updated: 2026-02-24 -->
 
 Opinionated best-practice rules for AI agent instruction files. Depends on [reporails/rules](https://github.com/reporails/rules) (core).
 
@@ -32,20 +32,19 @@ reporail/
 
 Defined in `.reporails/backbone.yml` — the single source of truth for project topology, paths, and registry locations.
 
-**BEFORE** running `find`, `grep`, `ls`, or glob to locate project files, you **MUST** read `.reporails/backbone.yml` first. All registry paths, rule directories, agent configs, and doc locations are mapped there. You **MUST NOT** use exploratory commands to discover paths that the backbone already provides.
+**BEFORE** running `find`, `grep`, `ls`, or glob to locate project files, you **MUST** read `.reporails/backbone.yml` first. All registry paths, rule directories, and doc locations are mapped there. You **MUST NOT** use exploratory commands to discover paths that the backbone already provides.
 
 ```
-core/{structure,content,efficiency,governance,maintenance}/  # Recommended rules
-  {slug}/                                                    # Each rule in own directory
-    rule.md                                                  # Rule definition
-    rule.yml                                                 # OpenGrep patterns
-    tests/                                                   # Test fixtures
-      pass/                                                  # Simulated project that passes
-      fail/                                                  # Simulated project that fails
-agents/{claude}/rules/                                       # Agent-specific recommended rules
-registry/                                                    # Coordinate map, tombstones
-docs/                                                        # Documentation
-.claude/{skills/}                                            # Claude config
+core/                              # Recommended rules (agent-agnostic)
+  {category}/{slug}/               # Each rule in own directory
+    rule.md                        # Rule definition
+    rule.yml                       # OpenGrep patterns
+    tests/                         # Test fixtures
+      pass/                        # Simulated project that passes
+      fail/                        # Simulated project that fails
+agents/                            # Agent-specific recommended rules
+registry/                          # Coordinate map, tombstones
+.claude/{skills/}                  # Claude config
 ```
 
 ## Commands
@@ -82,11 +81,9 @@ docker compose -f ../rules/runtime/docker-compose.yml run test
 ## Navigation
 
 Key paths:
-- @core/ — Recommended rules by category (structure, content, efficiency, governance, maintenance)
-- @agents/ — Agent-specific rules (5 Claude rules)
+- @core/ — Recommended rules (agent-agnostic)
+- @agents/ — Agent-specific rules
 - @registry/ — Coordinate map, tombstones
-- @docs/ — Source registry
-- @levels.yml — Level-to-rule mappings
 
 ## Efficiency
 

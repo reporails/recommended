@@ -129,11 +129,9 @@ jobs:
 
           tar -czvf reporails-recommended-${VERSION}.tar.gz \
             manifest.yml \
-            levels.yml \
             registry/ \
             core/ \
-            agents/ \
-            docs/sources.yml
+            agents/
 
           sha256sum reporails-recommended-${VERSION}.tar.gz > checksums.txt
 
