@@ -4,7 +4,6 @@ generator: manual
 depends_on:
   rules:
     schemas: [rule]
-    levels: true
 
 rules:
   core: core/
@@ -15,18 +14,6 @@ rules:
     opengrep: "rule.yml"
     test_pass: "tests/pass/"
     test_fail: "tests/fail/"
-  categories:
-    structure: core/structure/
-    content: core/content/
-    efficiency: core/efficiency/
-    governance: core/governance/
-    maintenance: core/maintenance/
-  agent_rules:
-    claude: agents/claude/rules/
-
-agents:
-  claude:
-    config: agents/claude/config.yml
 
 registry:
   coordinate_map: registry/coordinate-map.yml
@@ -35,10 +22,5 @@ registry:
 meta:
   version_file: VERSION
 
-docs:
-  sources: docs/sources.yml
-
 artifacts:
-  levels: levels.yml
-  sources: docs/sources.yml
   changelog: UNRELEASED.md
